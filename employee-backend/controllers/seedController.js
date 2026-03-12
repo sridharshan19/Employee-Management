@@ -4,8 +4,13 @@ const User = require('../models/User');
 
 const seedAdmin = async (req, res) => {
   try {
-    // Connect to database directly
-    await mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/employee-management');
+    // Use existing database connection
+    if (mongoose.connection.readyState !== 1) {
+      return res.status(500).json({ 
+        message: "Database not connected", 
+        error: "Please ensure database connection is established" 
+      });
+    }
 
     // Check if admin already exists
     const existingAdmin = await User.findOne({ email: 'admin@company.com' });
