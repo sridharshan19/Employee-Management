@@ -1,6 +1,7 @@
 // Attendance.jsx
 import React, { useState } from "react";
 import axios from "axios";
+import API_BASE_URL from "../config/api";
 
 const Attendance = () => {
   const [message, setMessage] = useState(""); //Message state
@@ -15,7 +16,7 @@ const Attendance = () => {
         return;
       }
 
-      const res = await axios.post("http://localhost:8080/api/attendance", {
+      const res = await axios.post(`${API_BASE_URL}/api/attendance`, {
   userId,
 });
 

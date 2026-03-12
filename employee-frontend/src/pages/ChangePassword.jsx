@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import API_BASE_URL from "../config/api";
 
 const ChangePassword = () => {
   const [email, setEmail] = useState("");
@@ -12,7 +13,7 @@ const ChangePassword = () => {
   const handleReset = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.put("http://localhost:8080/api/auth/change-password", {
+      const res = await axios.put(`${API_BASE_URL}/api/auth/change-password`, {
         email,
         newPassword,
       });

@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import API_BASE_URL from "../config/api";
 
 const AdminLeave = () => {
   const [leaveRequests, setLeaveRequests] = useState([]);
 
   const fetchLeaves = async () => {
     try {
-      const res = await axios.get("http://localhost:8080/api/leave");
+      const res = await axios.get(`${API_BASE_URL}/api/leave`);
       setLeaveRequests(res.data);
     } catch (error) {
       console.error("Error fetching leaves", error);
@@ -19,7 +20,7 @@ const AdminLeave = () => {
 
   const handleStatusUpdate = async (leaveId, status) => {
     try {
-      await axios.put(`http://localhost:8080/api/leave/${leaveId}/status`, {
+      await axios.put(`${API_BASE_URL}/api/leave/${leaveId}/status`, {
         status,
       });
 

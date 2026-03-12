@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import API_BASE_URL from "../config/api";
 
 const AdminEmployeesAttendance = () => {
   const [attendanceList, setAttendanceList] = useState([]);
@@ -21,7 +22,7 @@ const AdminEmployeesAttendance = () => {
   const fetchUnapprovedAttendance = async () => {
     try {
       setLoading(true);
-      const res = await axios.get("http://localhost:8080/api/attendance/unapproved");
+      const res = await axios.get(`${API_BASE_URL}/api/attendance/unapproved`);
       setAttendanceList(res.data);
     } catch (error) {
       console.error("Error fetching unapproved attendance:", error);
@@ -33,7 +34,7 @@ const AdminEmployeesAttendance = () => {
 
   const fetchTodayOverview = async () => {
     try {
-      const res = await axios.get("http://localhost:8080/api/attendance/overview-today");
+      const res = await axios.get(`${API_BASE_URL}/api/attendance/overview-today`);
       setOverview(res.data);
     } catch (error) {
       console.error("Error fetching today's overview:", error);
@@ -43,7 +44,7 @@ const AdminEmployeesAttendance = () => {
 
   const approveAttendance = async (id) => {
     try {
-      await axios.put(`http://localhost:8080/api/attendance/${id}/approve`);
+      await axios.put(`${API_BASE_URL}/api/attendance/${id}/approve`);
       toast.success("Attendance approved successfully!");
       setAttendanceList((prevList) => prevList.filter((item) => item._id !== id));
     } catch (error) {

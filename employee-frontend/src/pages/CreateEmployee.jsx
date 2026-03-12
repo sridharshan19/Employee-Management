@@ -1,6 +1,7 @@
 // pages/CreateEmployee.jsx
 import React, { useState } from "react";
 import axios from "axios";
+import API_BASE_URL from "../config/api";
 
 const CreateEmployee = () => {
   const [formData, setFormData] = useState({
@@ -34,7 +35,7 @@ const CreateEmployee = () => {
     }
 
     try {
-      const res = await axios.post("http://localhost:8080/api/auth/register", formData);
+      const res = await axios.post(`${API_BASE_URL}/api/auth/register`, formData);
       console.log("Employee Created: ", res.data);
       setMessage("✅ Employee created successfully");
       setFormData({

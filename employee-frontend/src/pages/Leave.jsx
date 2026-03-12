@@ -57,7 +57,7 @@
 //         category,
 //       };
 
-//       const res = await axios.post("http://localhost:8080/api/leave", leaveData);
+//       const res = await axios.post(`${API_BASE_URL}/api/leave`, leaveData);
 
 //       setMessage(res.data.message || "Leave requested successfully.");
 //       setFromDate("");
@@ -164,6 +164,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import API_BASE_URL from "../config/api";
 
 const Leave = () => {
   const [type, setType] = useState("full");
@@ -221,7 +222,7 @@ today.setHours(0, 0, 0, 0);
         category,
       };
 
-      const res = await axios.post("http://localhost:8080/api/leave", leaveData);
+      const res = await axios.post(`${API_BASE_URL}/api/leave`, leaveData);
 
       setMessage(res.data.message || "Leave requested successfully.");
       setFromDate("");

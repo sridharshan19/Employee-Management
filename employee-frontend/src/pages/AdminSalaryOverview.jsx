@@ -1,6 +1,7 @@
 
 import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
+import API_BASE_URL from "../config/api";
 
 const AdminSalaryOverview = () => {
   const [salaryData, setSalaryData] = useState([]);
@@ -9,7 +10,7 @@ const AdminSalaryOverview = () => {
 
   const fetchSalaryData = useCallback(async () => {
     try {
-      const response = await axios.get("http://localhost:8080/api/salary/all");
+      const response = await axios.get(`${API_BASE_URL}/api/salary/all`);
       setSalaryData(response.data);
     } catch (error) {
       console.error("Error fetching salary data", error);

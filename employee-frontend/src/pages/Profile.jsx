@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import API_BASE_URL from "../config/api";
 
 const Profile = () => {
   const [user, setUser] = useState(null);
@@ -11,7 +12,7 @@ const Profile = () => {
 
       //  to fetch data from backend
       axios
-        .get(`http://localhost:8080/api/auth/profile/${email}`)
+        .get(`${API_BASE_URL}/api/auth/profile/${email}`)
         .then((res) => {
           setUser(res.data); // Real DB user data
         })

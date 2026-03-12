@@ -1,6 +1,7 @@
 // src/pages/AdminResetPassword.jsx
 import React, { useState } from "react";
 import axios from "axios";
+import API_BASE_URL from "../config/api";
 
 const AdminResetPassword = () => {
   const [email, setEmail] = useState("");
@@ -11,7 +12,7 @@ const AdminResetPassword = () => {
   const handleReset = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.put("http://localhost:8080/api/auth/admin-reset-password", {
+      const res = await axios.put(`${API_BASE_URL}/api/auth/admin-reset-password`, {
         email,
         newPassword,
       });
